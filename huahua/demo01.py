@@ -1,13 +1,18 @@
-# import xlrd
+from selenium import webdriver
+import time
 
-# excle = xlrd.open_workbook("test.xlsx")
-# table = excle.sheet_by_name("Sheet1")
-# # value = table.row_values(1)
-# x = table.nrows
-# y = table.ncols
-for i in range(1,10):
-    print("------------------------------------------------------")
-    rowlist = table.row_values(i)
-    for j in rowlist:
-        print(j,end="|")
-    print ("")
+driver = webdriver.Chrome(executable_path="chromedriver") 
+driver.get("http://www.baidu.com")
+time.sleep(3)
+driver.maximize_window()
+driver.find_element_by_id("kw").send_keys("四月是你的谎言")
+time.sleep(3)
+driver.find_element_by_id("su").click()
+time.sleep(3)
+text = driver.find_element_by_xpath("//*[@id=\"1\"]/h3/a").text
+print(text)
+time.sleep(3)
+driver.find_element_by_xpath("//*[@id=\"1\"]/h3/a").click()
+time.sleep(3)
+driver.quit()
+
